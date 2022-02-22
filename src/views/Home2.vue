@@ -1,11 +1,53 @@
 <template>
-<div class="mt-2">
+<div>
 
-<b-icon icon="archive" scale="2" @click="increaseCount" >click me</b-icon>
-<br />
+<b-btn variant="success" @click="increaseCount" :size="buttonSize">click me</b-btn>
 
-<b-btn @click="showOverlay= !showOverlay">Convert true/false</b-btn>  
-showOverlay: {{showOverlay}}
+  <h1>This is the homepage.</h1>
+  Iterate an array : {{fruits}}
+  <p v-for="fruit in fruits" :key="fruit">{{fruit}}</p>
+
+  <hr />
+
+  <p v-for="(fruit,index) in fruits" :key="fruit" :index="index">{{parseInt(index)+1}} - {{fruit}}</p>
+ 
+  <hr />
+
+  Iterate an object: {{apple}}
+  <p v-for="(value, name) in apple" :key="value" >{{name}}: {{value}}</p>
+  
+  <hr />
+  
+  Iterate an object array
+  <!-- <div v-for="prod in products" :key="prod.name">
+    Product Name: {{prod.name}} <br />
+    Price: MYR {{prod.price}}<br />
+
+    =============
+
+
+  </div> -->
+
+  <div>
+    <div v-for="prod in products" :key="prod.name" style="border: 1px solid green">
+      {{prod}}
+      <h1>{{prod.name}}</h1>
+      <p>RM {{prod.price}}</p>
+      <h2 style="color: purple">{{prod.quantity}} pcs</h2>
+
+      <!-- // image, stock -->
+      Image Src:  {{prod.image}}
+
+      <!-- <img src="apple.jpg"> -->
+
+      <img v-bind:src="prod.image">
+      <p>Stock Left: {{prod.stock}} pcs</p>
+
+      <a :href="prod.url" >Click me</a>
+
+    </div>
+
+  </div>
   
 
   
@@ -17,7 +59,6 @@ showOverlay: {{showOverlay}}
 export default {
   data(){
     return{
-      showOverlay: false,
       buttonSize: "lg",
 
       fruits: ["apple", "orange", "pear", "durian"],
